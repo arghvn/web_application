@@ -9,11 +9,11 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
-		// w is an object that implements http.ResponseWriter , instead using object in req we use pointer to http.Request
-		w.Write([]byte("Hello , im writting a shop"))
-		// its take two argument ,pattern string and handler func(ResponseWriter, *Request), / use for route in project
-	})
+	http.Handle("/", new(MyHandler))
+	// w is an object that implements http.ResponseWriter , instead using object in req we use pointer to http.Request
+	// instead deleted command we use MyHandler struct
+	// its take two argument ,pattern string and handler func(ResponseWriter, *Request), / use for route in project
+
 	http.ListenAndServe(":8000", nil)
 }
 
@@ -27,6 +27,7 @@ type MyHandler struct {
 func (this *MyHandler) SrveHttp(w http.ResponseWriter, req *http.Request) {
 	path := "public/" + req.URL.Path
 	data, err := ioutil.ReadFile(string(path))
+	// at first data and err have an erro that says this two variable declare but not used , for handle this erro we write the erro handling :
 	if err == nil {
 		w.Write(data)
 	} else {
@@ -34,3 +35,5 @@ func (this *MyHandler) SrveHttp(w http.ResponseWriter, req *http.Request) {
 		w.Write([]byte("404 -" + http.StatusText(404)))
 	}
 }
+
+// output : 404 - notfound
