@@ -6,6 +6,7 @@ package main
 import (
 	"io/ioutil"
 	"net/http"
+	"strings"
 )
 
 func main() {
@@ -28,7 +29,27 @@ func (this *MyHandler) SrveHttp(w http.ResponseWriter, req *http.Request) {
 	path := "public/" + req.URL.Path
 	data, err := ioutil.ReadFile(string(path))
 	// at first data and err have an erro that says this two variable declare but not used , for handle this erro we write the erro handling :
+	// if err == nil {
+	// 	w.Write(data)
+	// } else {
+	// 	w.WriteHeader(404)
+	// 	w.Write([]byte("404 -" + http.StatusText(404)))
+
 	if err == nil {
+		var contentType string
+		if strings.HasSuffix(path, ".css") {
+			contentType = "text/css "
+		} else if strings.HasSuffix(path, ".html") {
+			contentType = "text/html"
+		} else if strings.HasSuffix(path, ".js") {
+			contentType = "application/javascript"
+		} else if strings.HasSuffix(path, ".png") {
+			contentType = "image/png"
+		} else {
+			contentType = "text/plain"
+		}
+		// using headerfor response by headerfunction
+		w.Header().Add("content Type", contentType)
 		w.Write(data)
 	} else {
 		w.WriteHeader(404)
@@ -37,3 +58,5 @@ func (this *MyHandler) SrveHttp(w http.ResponseWriter, req *http.Request) {
 }
 
 // output : 404 - notfound
+
+// if we search localhost:8000/html/home.html in  browser , show a page include login , home , shop , stand locator ... related to site that we are coding
