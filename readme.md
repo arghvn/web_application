@@ -22,3 +22,15 @@ we use localhost:8000 for it
 The main parts of the site include Google Map, a place to connect to the site, a place to personalize, a place to sell, a place for personal information of people, a place to introduce products, a place to display the information of site owners, all using cookies.
 
 in time exit the terminal write exit
+
+What is a resource server?
+A resource server is a server for access-protected resources. It handles authenticated requests from an app that has an access token.
+a resource server is set up to recieve requests from remote client machines HTTP or similar protocol.
+it determines if the requested resource such as a file on the server hard drive exists or not.
+ if it does the server sends the requested file back to the client.
+ the resource server requirements :
+listen on a TCP port for requests
+logic to handle request (error or response )
+
+for this project we should use net/http standard lybrary
+there are three objects in this package , http.ListenAndserve that use for checking request or response , http.Hanlde use for handle http handler interface and http.HandleFunc use for specific http handler interface.
