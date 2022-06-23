@@ -34,3 +34,21 @@ logic to handle request (error or response )
 
 for this project we should use net/http standard lybrary
 there are three objects in this package , http.ListenAndserve that use for checking request or response , http.Hanlde use for handle http handler interface and http.HandleFunc use for specific http handler interface.
+
+using localhost :
+Website designers need to execute their code to design and build their site. For this purpose, they use a computer browser to execute html, css and javascript code, and a web server and interpreter to execute php code and other server-side languages ​​so that they can execute their entire project.
+The first way to run server-side languages ​​seems to be to use an online server or host to run the project, but this method has many problems. For this reason, we use a local hosting space or local hosts instead of hosts.
+Localhost is a local space on a personal computer that creates a space like a host or a real server for us.
+ We have to pay to provide a standard service. It is usually not cost-effective to run and review projects that are in the pilot phase. Also, apart from the cost issue, we may sometimes not be able to access the Internet and the server.
+Another point is that whenever we want to make any changes and edits to our files on the computer, we must also apply these changes to the main host, which is very time consuming. So it is better to first test our edits and errors on a virtual web server and then upload it to the host after finalizing the work.
+Another point that can be mentioned is that our code may also have potential security issues and be severely damaged by being on the Internet. So to maintain information security, it is better to test them first on your personal computer and after finalizing and fixing the bugs, we put them on the host.
+
+local host in GO :
+
+
+
+
+
+
+
+to beautify the appearanace of the site 
