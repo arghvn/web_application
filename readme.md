@@ -43,12 +43,6 @@ Localhost is a local space on a personal computer that creates a space like a ho
 Another point is that whenever we want to make any changes and edits to our files on the computer, we must also apply these changes to the main host, which is very time consuming. So it is better to first test our edits and errors on a virtual web server and then upload it to the host after finalizing the work.
 Another point that can be mentioned is that our code may also have potential security issues and be severely damaged by being on the Internet. So to maintain information security, it is better to test them first on your personal computer and after finalizing and fixing the bugs, we put them on the host.
 
-local host in GO :
 
-
-
-
-
-
-
-to beautify the appearanace of the site 
+to beautify the appearanace of the site and a movie for demo using peach.blender.org site
+ copy it to project folder and add mp4 in our code (not done)
