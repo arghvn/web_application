@@ -46,3 +46,22 @@ Another point that can be mentioned is that our code may also have potential sec
 
 to beautify the appearanace of the site and a movie for demo using peach.blender.org site
  copy it to project folder and add mp4 in our code (not done)
+
+ html template :
+ Differences between dynamic and static pages in web design
+ 
+In designing web pages, some pages have fixed content and some have variable content based on user behavior. Accordingly, web pages are divided into two categories: static (dynamic) and dynamic (dynamic).
+
+Static page:
+A static page is a page of a website that has consistent content for all users. These pages, often implemented in HTML, CSS, and JavaScript, often do not send a request to the server to display content, or send a single, fixed request to the server. The server also sends the same response to these pages in all situations.
+
+For example, a page about us or a contact on the site has fixed content. Static pages do not mean that they have never been edited or changed. Rather, their content can be changed, but most cases do not need to be constantly changed, so they have a fixed content.
+
+Dynamic page:
+Dynamic pages are pages that have different content for users.
+In dynamic pages, we see a variety of content based on the choice or behavior of users. Like the meteorological pages where we see separate content based on the choice of province and city.
+
+An example of a dynamic web page is the shopping cart page. The content of this page is different for the user, based on his previous choices.
+Dynamic pages can be divided into two categories. Pages that are dynamic with user-side code and pages that are server-side dynamic become a dynamic web page.
+
+we use this funcions for templating , template.new , template.parse andtemplate.execute.
