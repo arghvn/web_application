@@ -11,7 +11,11 @@ func main() {
         w.Header().Add("Content Type", "text/html")
 		tmpl, err := template.New("test").pars(doc)
 		if err == nil {
-			tmlp.Execute(w, req.URL.Path)
+			context := COntext{
+				[3]string{"Lemon", "Orange", "Apple"},
+				"the title",
+			}
+			tmlp.Execute(w, context)
 		}
 // header for sending html
 })
@@ -23,13 +27,13 @@ const doc =
 // static content
 <!DOCTYPE html>
 <html>
-  <head><title>Example title</title></head>
+  <head><title>{{.title}}</title></head>
   <body>
-    {{if eq . "/Google"}}
-	     <h1>Hey, Google made GO!</h1> 
-    {{else }}
-	    <h1>Hello, {{.}}</h1>
-		{{end}}
+  <h1>List of fruit</h1>
+  <u1>
+  {{range .Fruit}}
+  <li>{{.}}</li>
+  {{end}}
   </body>
 </html>
 
@@ -47,8 +51,7 @@ type context struct {
 // for example eq 1 (0+1) (2-1) in result true
 // gt and le are used for compare , gt means greater  than and le means less or equal
 
-
-// output : Hello, /
-// if we search localhost:8000/world showwing us Hello, /world
-
-//if we search localhost:8000/Google showwing us Hey , Google made GO
+ type context struct {
+	fruit [3]string
+	title string
+ }
