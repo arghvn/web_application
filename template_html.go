@@ -11,8 +11,7 @@ func main() {
         w.Header().Add("Content Type", "text/html")
 		tmpl, err := template.New("test").pars(doc)
 		if err == nil {
-			context := context{"the message"}
-			tmlp.Execute(w, context)
+			tmlp.Execute(w, req.URL.Path)
 		}
 // header for sending html
 })
@@ -26,7 +25,11 @@ const doc =
 <html>
   <head><title>Example title</title></head>
   <body>
-    <h1>Hello {{.Message}}</h1> 
+    {{if eq . "/Google"}}
+	     <h1>Hey, Google made GO!</h1> 
+    {{else }}
+	    <h1>Hello, {{.}}</h1>
+		{{end}}
   </body>
 </html>
 
