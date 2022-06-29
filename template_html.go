@@ -49,3 +49,6 @@ type context struct {
 
 
 // output : Hello, /
+// if we search localhost:8000/world showwing us Hello, /world
+
+//if we search localhost:8000/Google showwing us Hey , Google made GO
