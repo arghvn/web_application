@@ -65,3 +65,12 @@ An example of a dynamic web page is the shopping cart page. The content of this 
 Dynamic pages can be divided into two categories. Pages that are dynamic with user-side code and pages that are server-side dynamic become a dynamic web page.
 
 we use this funcions for templating , template.new , template.parse andtemplate.execute.
+
+mvc pattern use for design
+it contained model , controller and view module
+model takes the response from database
+view shows this response
+controller passes response to the view
+
+for examlpe mvc used for log in in this case controller check the info and send it to model , model sens a response to controller and ffinally controller sends feedback to view
+view is connected to client and html
