@@ -34,33 +34,10 @@ func serveResource(w http.ResponseWriter, req *http.Request)
 	 } else if strings.HasSuffix(path, ".png"){
 		else { 
 			contentType = "text/plain"
+			// text/plain use for captcha
 		}
 	 }
-	
-const doc =  
-// create doc type and routes
-// static content
-{{template "header" .title}} 
-  <body>
-  <h1>List of fruit</h1>
-  <u1>
-  {{range .Fruit}}
-  <li>{{.}}</li>
-  {{end}}
-  </body>
-  {{template "footer"}}
 
-
-
-
-const header = 
-<!DOCTYPE html>
-<html>
-  <head><title>{{.}}</title></head>
-
-
-  const footer = 
-  </html>
 
 
 type context struct {
