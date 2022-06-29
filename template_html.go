@@ -3,6 +3,8 @@ package main
 import (
 	"net/http"
 	"text/template"
+	"bufio"
+	"strings"
 
 )
 
@@ -13,7 +15,7 @@ func main() {
 		templates.New("test").parse(doc)
 		templates.New("header").parse(header)
 		templates.New("footer").parse(footer)
-			context := COntext{
+			context := Context{
 				[3]string{"Lemon", "Orange", "Apple"},
 				"the title",
 			}
@@ -24,6 +26,17 @@ func main() {
      http.ListenAndServe(":8000", nil)
 }
 
+func serveResource(w http.ResponseWriter, req *http.Request)
+     path := "public" + req.URL.Path
+	 var contentType string
+	 if strings.HasSuffix(path, ".css"){
+		contentType = "text/css"
+	 } else if strings.HasSuffix(path, ".png"){
+		else { 
+			contentType = "text/plain"
+		}
+	 }
+	
 const doc =  
 // create doc type and routes
 // static content
