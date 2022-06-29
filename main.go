@@ -9,6 +9,7 @@ import (
 	"strings"
 	"os"
 	"bufio"
+	"viewmodels"
 )
 
 func main() {
