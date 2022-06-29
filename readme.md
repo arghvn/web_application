@@ -74,3 +74,7 @@ controller passes response to the view
 
 for examlpe mvc used for log in in this case controller check the info and send it to model , model sens a response to controller and ffinally controller sends feedback to view
 view is connected to client and html
+
+in view layer :  geenerate user output , recieve user action , templates , bind data(recieve data andd assign it)
+
+
