@@ -4,11 +4,12 @@ package main
 // creating a resource server for our application
 
 import (
+	"bufio"
+	"html/template"
 	"io/ioutil"
 	"net/http"
-	"strings"
 	"os"
-	"bufio"
+	"strings"
 	"viewmodels"
 )
 
@@ -68,3 +69,33 @@ func (this *MyHandler) SrveHttp(w http.ResponseWriter, req *http.Request) {
 
 // by adding if/else for css , html , js / png ... and again if we search localhost:8000/html/home.html in  browser ,
 // show a page include login , home , shop , stand locator ... related to site that we are coding , wonderful ... this site is userfriendly
+
+
+
+// a brief command for future after learning interfaces
+
+func main() {
+	templates := populateTemplates()
+
+	http.Handlefunc("/",
+        func(w http.RespnseWriter, req *http.Request) {
+			requestedfile := req.URL.path[1:]
+			template :=
+			     templates.lookup(requestedfile + ".html")
+
+				 var context interface{} = nil
+                 switch requestedfile {
+
+				 case "home":
+					context = viewmodles.Gethome()
+				 case "categories":
+					context : viewmodels.GetCategories()
+				 }
+				 if template != nil {
+					template.Execute(w, context)
+				 } else {
+					w.writeHeader(404)
+				 }
+				 }
+		})
+
