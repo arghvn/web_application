@@ -7,3 +7,12 @@ Model: The model is responsible for managing the Business Logic application. In 
 View: The view of the application is where various data are exposed to the users of the application. For example, this page of the academy rudder you see is part of the rudder web application of the academy.
 
 Controller: The controller, as its name implies, is responsible for control. In other words, the controller takes users' requests and checks to see which part of the application is responsible for responding to these requests.
+
+controller layer :
+recieve request 
+recieve result from model
+send data to view
+inform model
+middleware
+
+lets create a controller
