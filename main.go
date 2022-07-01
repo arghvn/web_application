@@ -11,9 +11,12 @@ import (
 	"os"
 	"strings"
 	"viewmodels"
+	"controller"
 )
 
 func main() {
+
+	controllers.Register(templates)
 	http.Handle("/", new(MyHandler))
 	// w is an object that implements http.ResponseWriter , instead using object in req we use pointer to http.Request
 	// instead deleted command we use MyHandler struct
