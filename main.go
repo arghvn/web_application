@@ -77,6 +77,14 @@ func (this *MyHandler) SrveHttp(w http.ResponseWriter, req *http.Request) {
 
 // a brief command for future after learning interfaces
 
+
+hc := new(homeController)
+hc.template = templates.Lookup("home.html")
+http.HandleFunc("/home", hc.get)
+
+cc := new(CategoriesController)
+cc.template = templates.Lookup("categories.html")
+http.HandleFunc("/categroies", cc.get)
 func main() {
 	templates := populateTemplates()
 
