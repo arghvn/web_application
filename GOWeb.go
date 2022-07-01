@@ -13,8 +13,13 @@ func main() {
 			requestedFile := req.URL.path[1:]
 			template := 
 			templates.Lookup(requstedFile + ".html")
+			var context interface{} = nil 
+			// assign data later
+			if requestedFile == "home" {
+				context = viewmodels.GetHome()
+			}
 			if template != nil {
-				template.Execute(w, nil)
+				template.Execute(w, context)
 			}else
 			    w.WriteHeader(404)
 		}
