@@ -15,6 +15,7 @@ type category struct {
 	Title string 
 	Description string
 	IsOrientRight bool
+	Id int
 }
 
 func GetCategories() categories {
@@ -26,6 +27,7 @@ func GetCategories() categories {
 
 // fpr example for juice category :
 juiceCategory := Category{
+	Id: 1,
 	ImageUrl: "lemon.png",
 	Title: "juice and Mixes",
 	Description: "a short brief",
@@ -36,6 +38,7 @@ IsOrientRight: false,
 }
 
 supplycategory := category{
+	Id: 2,
 	ImageUrl: "Kiwi.png",
 	Title: "cups, strawa, and other supplies",
 	Description: "a short brief",
@@ -43,6 +46,7 @@ supplycategory := category{
 }
 
 advertiseCategory := category{
+	Id: 3,
 	ImageUrl: "pineapple.png",
 	Title: " signs and advertising",
 	Description: "a short brief"
