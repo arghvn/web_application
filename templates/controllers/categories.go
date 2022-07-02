@@ -5,6 +5,7 @@ import (
 	"text/template"
 	"viewmodels"
 	"github.com/gorilla/mux"
+	"strconv"
 )
 
 type CategoriesController struct {
@@ -12,12 +13,22 @@ type CategoriesController struct {
 }
 
 func (this *CategoriesController) get(w http.ResponseWriter, req *http.Request) {
-	vm := viewmodels.GetCategories()
+	vars := mux.vars(req)
+
+	idRaw := vars["id"]
+
+	id, err := strconv.Atoi(idRaw)
+	if err == nil {
+
+	
+	vm := viewmodels.GetCategories(id)
 
 	w.Header().Add("content Type", "text/html")
 	this.template.Execute(w, vm)
+} else {
+	w.WriteHeader(404)
 }
-
+}
 
 type CategoriesController struct {
 	template *template.Template
