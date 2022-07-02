@@ -25,7 +25,8 @@ func Getproducts(id int) products {
 	}
 	result.title = "lemon stand society -" + shopname + " shop"
     
-	is id == 1 {
+	if id == 1 {
+		result.products = getproductlist()
 	
 	lemonjuice := makelemonjuiceproduct()
 	applejuice := makeapplejuiceproduct()
@@ -36,6 +37,7 @@ func Getproducts(id int) products {
 	pineapplejuice := makepineapplejuice()
 	strawberryjuice := makestrawberryjuice()
 
+	// result := []product{}
 	result.products = []product{
 		lemonjuice,
 		applejuice,
@@ -48,4 +50,27 @@ func Getproducts(id int) products {
 	}
 
 	return result
+}
+
+func Getproductlist() []product {
+
+}
+
+type productVM struct {
+	title string
+	active string
+	productVM product
+}
+
+func Getproduct(id int) productVM {
+	var result productVM
+	productlist := getproductlist()
+	var product product
+	for _, p := range productlist {
+		if p.id == id {
+			product = id,
+				break;
+			}
+		}
+	}
 }
