@@ -7,10 +7,26 @@ import (
 	"bufio"
 	"strings"
 	"viewmodels"
+	"github.com/gorilla/mux"
 )
 
 func register(templates *template.Template) {
-	http.Handlefunc("/",
+	router := mux.NewRouter()
+
+	hc := new(homecontroller)
+	hc.template = templates.Lookup("home.html")
+    router.HandleFunc("/home", hc.get)
+
+	cc := new(CategoriesController)
+	cc.template = templates.Lookup("categories.html")
+	router.HandleFunc("/categories", cc.get)
+    categorycontroller := new(categorycontroller)
+    categorycontroller.template = templates.Lookup("products.html")
+	router.HandleFunc("/categories/{id}", categorycontroller.get)
+
+	http.Handle("/", router)
+
+	http.Handlefunc("/", router)
         func(w http.RespnseWriter, req *http.Request) {
 			requestedfile := req.URL.path[1:]
 			template :=
@@ -60,4 +76,6 @@ func register(templates *template.Template) {
 // in output(ru as application) every thing is fine 
 // for example in lemon juice we see the details
 // and other choices
+
+
 
