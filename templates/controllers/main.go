@@ -8,6 +8,8 @@ import (
 	"strings"
 	"viewmodels"
 	"github.com/gorilla/mux"
+	"strconv"
+	"controllers/util"
 )
 
 func register(templates *template.Template) {
@@ -78,4 +80,7 @@ func register(templates *template.Template) {
 // and other choices
 
 
+
+
+// as output in terminal we have  the files volume (2.5 KB)
 

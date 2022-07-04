@@ -36,7 +36,7 @@ func (this ClosableResponseWriter) close() {
 
 }
 
-func gzipResponseWriter(w http.ResponseWriter, req *http.Request) {
+func gzipResponseWriter(w http.ResponseWriter, req *http.Request) closeableResponseWriter {
 	if strings.contains(req.Header.Get("accept-encoding"), "gzip") {
 		w.Header().set("content-encoding", "gzip")
 		gRW := gzipResponseWriter{
