@@ -68,3 +68,75 @@ func handler(w http.ResponseWriter, r *http.Request) {
 // This will add the gorilla/mux library to your project.
 
 // Now, we can modify our code to make use of the functionality that this library provides .
+
+// Adding the bird REST API handlers
+// As we can see, we will need to implement two APIs in order for this application to work:
+
+// GET /bird - that will fetch the list of all birds currently in the system
+// POST /bird - that will add an entry to our existing list of birds
+// For this, we will write the corresponding handlers.
+
+// Create a new file called bird_handlers.go, adjacent to the main.go file.
+
+// First, we will add the definition of the Bird struct and initialize a common bird variable:
+
+type Bird struct {
+	Species     string `json:"species"`
+	Description string `json:"description"`
+}
+
+var birds []Bird
+// Next, define the handler to get all birds :
+
+func getBirdHandler(w http.ResponseWriter, r *http.Request) {
+	//Convert the "birds" variable to json
+	birdListBytes, err := json.Marshal(birds)
+
+	// If there is an error, print it to the console, and return a server
+	// error response to the user
+	if err != nil {
+		fmt.Println(fmt.Errorf("Error: %v", err))
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	// If all goes well, write the JSON list of birds to the response
+	w.Write(birdListBytes)
+}
+Next, the handler to create a new entry of birds :
+
+func createBirdHandler(w http.ResponseWriter, r *http.Request) {
+	// Create a new instance of Bird
+	bird := Bird{}
+
+	// We send all our data as HTML form data
+	// the `ParseForm` method of the request, parses the
+	// form values
+	err := r.ParseForm()
+
+	// In case of any error, we respond with an error to the user
+	if err != nil {
+		fmt.Println(fmt.Errorf("Error: %v", err))
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	// Get the information about the bird from the form info
+	bird.Species = r.Form.Get("species")
+	bird.Description = r.Form.Get("description")
+
+	// Append our existing list of birds with a new entry
+	birds = append(birds, bird)
+
+	//Finally, we redirect the user to the original HTMl page
+	// (located at `/assets/`), using the http libraries `Redirect` method
+	http.Redirect(w, r, "/assets/", http.StatusFound)
+}
+The last step, is to add these handler to our router, in order to enable them to be used by our application :
+
+	// These lines are added inside the newRouter() function before returning r
+	r.HandleFunc("/bird", getBirdHandler).Methods("GET")
+	r.HandleFunc("/bird", createBirdHandler).Methods("POST")
+	return r
+
+
+
