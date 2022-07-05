@@ -54,3 +54,17 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 // Although you can achieve this with Go’s net/http standard library,
 //  there are other libraries out there that provide a more idiomatic and declarative way to handle http routing.
+
+// Installing external libraries :
+// We will be installing a few external libraries through this tutorial, where the standard libraries don’t provide the features that we want.
+// When we install libraries, we need a way to ensure that other people who work on our code also have the same version of the library that we do.
+
+// In order to do this, we can make use of the go get command,
+//  which helps us install the library of our choice, and adds its version information to the go.mod and go.sum files.
+
+// Let’s install our routing library:
+
+// go get github.com/gorilla/mux
+// This will add the gorilla/mux library to your project.
+
+// Now, we can modify our code to make use of the functionality that this library provides .
