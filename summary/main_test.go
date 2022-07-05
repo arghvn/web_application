@@ -184,3 +184,72 @@ func TestRouterForNonExistentRoute(t *testing.T) {
 // Create static assets
 // Modify our router to serve static assets
 // Add tests to verify that our new server can serve static files
+
+// Create static assets
+// To create static assets, create a directory in your project root directory, and name it assets :
+
+// mkdir assets
+// Next, create an HTML file inside this directory. This is the file we are going to serve, along with any other file that goes inside the assets directory :
+
+// touch assets/index.html
+// Modify the router
+// Interestingly enough, the entire file server can be enabled in just adding 3 lines of code in the router. The new router constructor will look like this :
+
+func newRouter() *mux.Router {
+	r := mux.NewRouter()
+	r.HandleFunc("/hello", handler).Methods("GET")
+
+	// Declare the static file directory and point it to the
+	// directory we just made
+	staticFileDirectory := http.Dir("./assets/")
+	// Declare the handler, that routes requests to their respective filename.
+	// The fileserver is wrapped in the `stripPrefix` method, because we want to
+	// remove the "/assets/" prefix when looking for files.
+	// For example, if we type "/assets/index.html" in our browser, the file server
+	// will look for only "index.html" inside the directory declared above.
+	// If we did not strip the prefix, the file server would look for
+	// "./assets/assets/index.html", and yield an error
+	staticFileHandler := http.StripPrefix("/assets/", http.FileServer(staticFileDirectory))
+	// The "PathPrefix" method acts as a matcher, and matches all routes starting
+	// with "/assets/", instead of the absolute route itself
+	r.PathPrefix("/assets/").Handler(staticFileHandler).Methods("GET")
+	return r
+}
+
+// Testing the static file server
+
+func TestStaticFileServer(t *testing.T) {
+	r := newRouter()
+	mockServer := httptest.NewServer(r)
+
+	// We want to hit the `GET /assets/` route to get the index.html file response
+	resp, err := http.Get(mockServer.URL + "/assets/")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// We want our status to be 200 (ok)
+	if resp.StatusCode != http.StatusOK {
+		t.Errorf("Status should be 200, got %d", resp.StatusCode)
+	}
+
+	// It isn't wise to test the entire content of the HTML file.
+	// Instead, we test that the content-type header is "text/html; charset=utf-8"
+	// so that we know that an html file has been served
+	contentType := resp.Header.Get("Content-Type")
+	expectedContentType := "text/html; charset=utf-8"
+
+	if expectedContentType != contentType {
+		t.Errorf("Wrong content type, expected %s, got %s", expectedContentType, contentType)
+	}
+
+}
+
+// To actually test your work, run the server :
+
+// go run main.go
+// And navigate to http://localhost:8080/assets/ in your browser.
+
+// Making a simple browser app :
+// Since we need to create our bird encyclopedia, lets create a simple HTML document that displays the list of birds,
+// and fetches the list from an API on page load, and also provides a form to update the list of birds
