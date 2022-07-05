@@ -140,3 +140,10 @@ The last step, is to add these handler to our router, in order to enable them to
 
 
 
+// Adding a database
+
+// so far, we have added persistence to our application, with the information about different birds getting stored and retrieved.
+
+// However, this persistence is short lived, since it is in memory. This means that anytime you restart your application, all the data gets erased. In order to add true persistence, we will need to add a database to our stack.
+
+// Until now, our code was easy to reason about and test, since it was a standalone application. Adding a database will add another layer of communication.
